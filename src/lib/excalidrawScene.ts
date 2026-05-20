@@ -115,11 +115,11 @@ export function normalizeSceneDefaults(
 			// Use originalText as source of truth — text may be wrapped inside containers
 			const sourceText = el.originalText ?? el.text
 			const hasAgent = /agent/i.test(sourceText)
-			const hasPrefix = sourceText.startsWith('* ')
+			const hasPrefix = sourceText.startsWith('✨ ')
 
 			if (hasAgent && !hasPrefix) {
 				changed = true
-				const newOriginalText = `* ${sourceText}`
+				const newOriginalText = `✨ ${sourceText}`
 				if (el.containerId !== null) {
 					// Bound text: set originalText and text to unwrapped prefixed string;
 					// Excalidraw will re-wrap on next layout pass
@@ -128,7 +128,7 @@ export function normalizeSceneDefaults(
 						originalText: newOriginalText,
 					})
 				}
-				const newText = `* ${el.text}`
+				const newText = `✨ ${el.text}`
 				const newWidth = Math.max(el.width, measureTextWidth(newText, el.fontSize, el.fontFamily))
 				return newElementWith(el, {
 					text: newText,
@@ -147,7 +147,7 @@ export function normalizeSceneDefaults(
 						originalText: newOriginalText,
 					})
 				}
-				const newText = el.text.startsWith('* ') ? el.text.slice(2) : el.text
+				const newText = el.text.startsWith('✨ ') ? el.text.slice(2) : el.text
 				const newWidth = measureTextWidth(newText, el.fontSize, el.fontFamily)
 				return newElementWith(el, {
 					text: newText,
